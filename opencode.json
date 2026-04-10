@@ -1,7 +1,17 @@
 {
+  "$schema": "https://opencode.ai/config.json",
   "agent": {
-    "gentleman": {
+    "build": {
+      "hidden": true,
+      "model": "opencode/qwen3.6-plus-free"
+    },
+    "plan": {
+      "hidden": true
+    },
+    "Senior-Architect-mentor": {
+      "color": "#9B59B6",
       "description": "Senior Architect mentor - helpful first, challenging when it matters",
+      "hidden": true,
       "mode": "primary",
       "prompt": "{file:./AGENTS.md}",
       "tools": {
@@ -9,74 +19,22 @@
         "write": true
       }
     },
-    "sdd-apply": {
-      "description": "Implement code changes from task definitions",
-      "hidden": true,
-      "mode": "subagent",
-      "model": "opencode/claude-sonnet-4-6",
-      "prompt": "You are an SDD sub-agent for the apply phase. Read your skill file at ~/.config/opencode/skills/sdd-apply/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
+    "senior-go-python-angular": {
+      "color": "#3498DB",
+      "description": "Senior Go/Python/Angular reviewer - provides detailed feedback on code quality and design",
+      "hidden": false,
+      "mode": "primary",
+      "prompt": "{file:./agents/senior-go-python-angular.md}",
+      "model" : "openai/gpt-5.4",
       "tools": {
-        "bash": true,
         "edit": true,
-        "read": true,
-        "write": true
-      }
-    },
-    "sdd-archive": {
-      "description": "Archive completed change artifacts",
-      "hidden": true,
-      "mode": "subagent",
-      "model": "opencode/gemini-3.1-pro",
-      "prompt": "You are an SDD sub-agent for the archive phase. Read your skill file at ~/.config/opencode/skills/sdd-archive/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
-      "tools": {
-        "bash": true,
-        "edit": true,
-        "read": true,
-        "write": true
-      }
-    },
-    "sdd-design": {
-      "description": "Create technical design from proposals",
-      "hidden": true,
-      "mode": "subagent",
-      "model": "opencode/claude-opus-4-6",
-      "prompt": "You are an SDD sub-agent for the design phase. Read your skill file at ~/.config/opencode/skills/sdd-design/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
-      "tools": {
-        "bash": true,
-        "edit": true,
-        "read": true,
-        "write": true
-      }
-    },
-    "sdd-explore": {
-      "description": "Investigate codebase and think through ideas",
-      "hidden": true,
-      "mode": "subagent",
-      "model": "opencode/gpt-5.4",
-      "prompt": "You are an SDD sub-agent for the explore phase. Read your skill file at ~/.config/opencode/skills/sdd-explore/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
-      "tools": {
-        "bash": true,
-        "edit": true,
-        "read": true,
-        "write": true
-      }
-    },
-    "sdd-init": {
-      "description": "Bootstrap SDD context and project configuration",
-      "hidden": true,
-      "mode": "subagent",
-      "model": "opencode/claude-sonnet-4-6",
-      "prompt": "You are an SDD sub-agent for the init phase. Read your skill file at ~/.config/opencode/skills/sdd-init/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
-      "tools": {
-        "bash": true,
-        "edit": true,
-        "read": true,
         "write": true
       }
     },
     "sdd-orchestrator": {
       "description": "Agent Teams Orchestrator - coordinates sub-agents, never does work inline",
       "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-6",
       "permission": {
         "task": {
           "*": "deny",
@@ -94,11 +52,76 @@
         "write": true
       }
     },
+    "sdd-design": {
+      "description": "Create technical design from proposals",
+      "hidden": true,
+      "mode": "subagent",
+      "model": "anthropic/claude-opus-4-6",
+      "prompt": "You are an SDD sub-agent for the design phase. Read your skill file at ~/.config/opencode/skills/sdd-design/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      }
+    },
+    "sdd-apply": {
+      "description": "Implement code changes from task definitions",
+      "hidden": true,
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "prompt": "You are an SDD sub-agent for the apply phase. Read your skill file at ~/.config/opencode/skills/sdd-apply/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      }
+    },
+    "sdd-archive": {
+      "description": "Archive completed change artifacts",
+      "hidden": true,
+      "mode": "subagent",
+      "model": "google/gemini-3-pro-preview",
+      "prompt": "You are an SDD sub-agent for the archive phase. Read your skill file at ~/.config/opencode/skills/sdd-archive/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      }
+    },
+    "sdd-explore": {
+      "description": "Investigate codebase and think through ideas",
+      "hidden": true,
+      "mode": "subagent",
+      "model": "openai/gpt-5.4",
+      "prompt": "You are an SDD sub-agent for the explore phase. Read your skill file at ~/.config/opencode/skills/sdd-explore/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      }
+    },
+    "sdd-init": {
+      "description": "Bootstrap SDD context and project configuration",
+      "hidden": true,
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "prompt": "You are an SDD sub-agent for the init phase. Read your skill file at ~/.config/opencode/skills/sdd-init/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
+      "tools": {
+        "bash": true,
+        "edit": true,
+        "read": true,
+        "write": true
+      }
+    },
     "sdd-propose": {
       "description": "Create change proposals from explorations",
       "hidden": true,
       "mode": "subagent",
-      "model": "opencode/gemini-3.1-pro",
+      "model": "google/gemini-3.1-pro-preview",
       "prompt": "You are an SDD sub-agent for the propose phase. Read your skill file at ~/.config/opencode/skills/sdd-propose/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
       "tools": {
         "bash": true,
@@ -111,7 +134,7 @@
       "description": "Write detailed specifications from proposals",
       "hidden": true,
       "mode": "subagent",
-      "model": "opencode/gemini-3.1-pro",
+      "model": "google/gemini-3.1-pro-preview",
       "prompt": "You are an SDD sub-agent for the spec phase. Read your skill file at ~/.config/opencode/skills/sdd-spec/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
       "tools": {
         "bash": true,
@@ -124,7 +147,7 @@
       "description": "Break down specs and designs into implementation tasks",
       "hidden": true,
       "mode": "subagent",
-      "model": "opencode/gpt-5.4",
+      "model": "openai/gpt-5.4",
       "prompt": "You are an SDD sub-agent for the tasks phase. Read your skill file at ~/.config/opencode/skills/sdd-tasks/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
       "tools": {
         "bash": true,
@@ -137,7 +160,7 @@
       "description": "Validate implementation against specs",
       "hidden": true,
       "mode": "subagent",
-      "model": "opencode/gpt-5.4",
+      "model": "openai/gpt-5.4",
       "prompt": "You are an SDD sub-agent for the verify phase. Read your skill file at ~/.config/opencode/skills/sdd-verify/SKILL.md and follow its instructions. It includes a Step 1 for loading the skill registry — do NOT skip it.",
       "tools": {
         "bash": true,
@@ -163,12 +186,12 @@
       "type": "local"
     },
     "mgrep": {
-      "type": "local",
       "command": [
         "mgrep",
         "mcp"
       ],
-      "enabled": true
+      "enabled": true,
+      "type": "local"
     }
   },
   "permission": {
@@ -197,5 +220,237 @@
     "opencode-gemini-auth@latest",
     "opencode-claude-auth@latest"
   ],
-  "$schema": "https://opencode.ai/config.json"
+  "provider": {
+    "openai": {
+      "models": {
+        "gpt-5.1": {
+          "limit": {
+            "context": 272000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "name": "GPT 5.1 (OAuth)",
+          "variants": {
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "high"
+            },
+            "low": {
+              "reasoningEffort": "low",
+              "reasoningSummary": "auto",
+              "textVerbosity": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "none": {
+              "reasoningEffort": "none",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            }
+          }
+        },
+        "gpt-5.1-codex": {
+          "limit": {
+            "context": 272000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "name": "GPT 5.1 Codex (OAuth)",
+          "variants": {
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "low": {
+              "reasoningEffort": "low",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            }
+          }
+        },
+        "gpt-5.1-codex-max": {
+          "limit": {
+            "context": 272000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "name": "GPT 5.1 Codex Max (OAuth)",
+          "variants": {
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "low": {
+              "reasoningEffort": "low",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            }
+          }
+        },
+        "gpt-5.1-codex-mini": {
+          "limit": {
+            "context": 272000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "name": "GPT 5.1 Codex Mini (OAuth)",
+          "variants": {
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            }
+          }
+        },
+        "gpt-5.2": {
+          "limit": {
+            "context": 272000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "name": "GPT 5.2 (OAuth)",
+          "variants": {
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "low": {
+              "reasoningEffort": "low",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "none": {
+              "reasoningEffort": "none",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            }
+          }
+        },
+        "gpt-5.2-codex": {
+          "limit": {
+            "context": 272000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "name": "GPT 5.2 Codex (OAuth)",
+          "variants": {
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "low": {
+              "reasoningEffort": "low",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            }
+          }
+        }
+      },
+      "options": {
+        "include": [
+          "reasoning.encrypted_content"
+        ],
+        "reasoningEffort": "medium",
+        "reasoningSummary": "auto",
+        "store": false,
+        "textVerbosity": "medium"
+      }
+    }
+  }
 }
