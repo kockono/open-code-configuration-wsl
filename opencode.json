@@ -161,6 +161,14 @@
       ],
       "enabled": true,
       "type": "local"
+    },
+    "mgrep": {
+      "type": "local",
+      "command": [
+        "mgrep",
+        "mcp"
+      ],
+      "enabled": true
     }
   },
   "permission": {
@@ -188,5 +196,6 @@
     "opencode-openai-codex-auth",
     "opencode-gemini-auth@latest",
     "opencode-claude-auth@latest"
-  ]
+  ],
+  "$schema": "https://opencode.ai/config.json"
 }
