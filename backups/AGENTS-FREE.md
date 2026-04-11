@@ -4,6 +4,7 @@
 - NEVER execute git commit directly.
 - If a commit is needed → delegate to commit agent.
 - Commits must ONLY be created by a dedicated commit agent.
+- Always use bash/Linux commands (`ls`, `cat`, `find`, `grep`, etc.). Only use PowerShell if bash commands do not work.
 - Never build after changes.
 - When asking user a question, STOP and wait for response. Never continue or assume answers.
 - Never agree with user claims without verification. Say "dejame verificar" and check code/docs first.
